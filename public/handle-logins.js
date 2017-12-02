@@ -8,16 +8,25 @@ function reqPermission(id) {
     }
 }
 
-function updateProviderStates(providerState, targetClass) {
+function updateProviderStates(providerState, targetPage) {
     var prov = providerState["providers"];
     var provsLength = prov.length;
     for (var i = 0; i < provsLength; i++) {
         if (prov[i] != null) {
-            if (prov[i]["enabled"]) {
-                // post request
-                document.getElementById(prov[i]["name"]).getElementsByClassName(targetClass)[0].textContent = "Enable";
-            } else {
-                document.getElementById(prov[i]["name"]).getElementsByClassName(targetClass)[0].textContent = "Disable";
+            if (targetPage = "project" && document.getElementById(prov[i]["name"]).getElementsByClassName("btn")[0] != null) {
+
+                if (prov[i]["enabled"]) {
+                    document.getElementById(prov[i]["name"]).getElementsByClassName("btn")[0].textContent = "Enable";
+                } else {
+                    document.getElementById(prov[i]["name"]).getElementsByClassName("btn")[0].textContent = "Disable";
+                }
+
+            } else if (targetPage = "submitreq") {
+                var prevValue = 
+                    document.getElementById(prov[i]["name"]).value;
+                if (!prov[i]["enabled"] && document.getElementById(prov[i]["name"])) {
+                    document.getElementById(prov[i]["name"]).value += " (need to login)";
+                }
             }
         }
     }

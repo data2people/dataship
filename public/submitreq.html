@@ -81,14 +81,13 @@
             onmouseover="focus();"
             />
             <datalist id="provider-datalist">
-                <option value="Facebook"/>
-                <option value="Google"/>
-                <option value="Amazon"/>
-                <option value="RandomCompany"/>
+                <option id="facebook" value="Facebook"/>
+                <option id="google-plus" value="Google Plus"/>
+                <option id="google-fit" value="Google Fit"/>
             </datalist>
             <h1>.</h1>
 
-          <a href="./project.html" class="btn btn-default btn-lg" title="">Submit request.</a>
+          <a href="#" id="submit-request-button" class="btn btn-default btn-lg" title="">Submit request.</a>
         </div>
       </div>
     </div>
@@ -181,10 +180,37 @@
   </div>
 </footer>
 
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="./handle-logins.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#provider').on('input', function() {
+        var userText = $(this).val();
+
+        $("#provider-datalist").find("option").each(function() {
+            if ($(this).val() == userText) {
+                if (userText.includes("(need to login)")) {
+                    document.getElementById("submit-request-button").textContent = "Manage Accounts.";
+                    document.getElementById("submit-request-button").href = "./project.html";
+                } else {
+                    document.getElementById("submit-request-button").textContent = "Submit Request.";
+                    document.getElementById("submit-request-button").href = "#";
+                }
+            }
+        })
+    })
+});
+
+</script>
+
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
     navActivePage();
     scrollRevelation('.reveal');
+    providerState = getPermissions();
+    updateProviderStates(providerState, "submitreq")
   });
 </script>
 
