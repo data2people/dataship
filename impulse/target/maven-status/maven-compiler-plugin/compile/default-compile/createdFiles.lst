@@ -1,0 +1,4 @@
+impulse/models/ImpulseUser.class
+impulse/controllers/UserController.class
+impulse/repos/UserRepository.class
+impulse/App.class
