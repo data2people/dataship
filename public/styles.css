@@ -15,6 +15,16 @@
         opacity:0.5 !important;
 }
 
+.little-left-margin {
+    margin-left: 20px;
+}
+.navbar-logo-img {
+    margin-top: -30px !important;
+}
+.normalh2::after {
+    content: "";
+}
+
 
 .form-main select
 {
