@@ -19,10 +19,12 @@
 
   <link href="" rel="stylesheet">
   <link href="./styles.css" rel="stylesheet">
-
+  <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css
+" rel="stylesheet">
 
   <title>Title page</title>
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link href="./main.550dcf66.css" rel="stylesheet"></head>
 
 <body> <!-- Add your content of header -->
@@ -65,23 +67,24 @@
         <div class="col-xs-12 col-md-8 col-md-offset-2">
           
 
-            <ul class="list-group permission-list">
-                <li class="list-group-item" id="facebook">
-                    <a href="#" class="fa fa-facebook fa-2x"></a>
-                    <h3>Facebook</h3>
-                    <button class="btn btn-primary" onclick="reqPermission('facebook')">Enable</button>
-                </li>
-                <li class="list-group-item" id="google-plus">
-                    <a href="#" class="fa fa-google-plus-square fa-2x"></a>
-                    <h3>Google Plus</h3>
-                    <button class="btn btn-primary" onclick="reqPermission('google-plus')">Enable</button>
-                </li>
-                <li class="list-group-item" id="google-fit">
-                    <a href="#" class="fa fa-heart fa-2x"></a>
-                    <h3>Google Fit</h3>
-                    <button class="btn btn-primary" onclick="reqPermission('google-fit')">Enable</button>
-                </li>
-            </ul>
+            <table id="myrequests" class="display" width="100%" cellspacing="0">
+                <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Request type</th>
+                    <th>State</th>
+                    <th>Due date</th>
+                </tr>
+                </thead>
+                <tfoot>
+                <tr>
+                    <th>Company</th>
+                    <th>Request type</th>
+                    <th>State</th>
+                    <th>Due date</th>
+                </tr>
+                </tfoot>
+            </table>
 
 
        </div>
@@ -111,14 +114,56 @@
 </footer>
 
 <script type="text/javascript" src="./handle-logins.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", function (event) {
     navActivePage();
     scrollRevelation('.reveal');
-    providerState = getPermissions();
-    updateProviderStates(providerState, "btn");
   });
+
+    $(document).ready(function() {
+        var table = $('#myrequests').DataTable( {
+            "ajax": 'dumbdata.txt'
+        });
+
+        $('#myrequests tbody').on('click', 'tr', function () {
+            var data = table.row( this  ).data();
+
+            // dialog
+            var dialog = bootbox.dialog({
+            title: 'Take action',
+            message: "<p>This dialog has buttons. Each button has it's own callback function.</p>",
+            message: "<ul><li>Company: " + data[0] + "</li><li>Request type: " + data[1] + "</li><li>State: " + data[2] + "</li><li>Due date: " + data[3] + "</li></ul>",
+            buttons: {
+                cancel: {
+                    label: "Ping",
+                    className: 'btn-primary',
+                    callback: function(){
+                        Example.show('Custom cancel clicked');
+                    }
+                },
+                noclose: {
+                    label: "Stop",
+                    className: 'btn-primary',
+                    callback: function(){
+                        Example.show('Custom button clicked');
+                    }
+                },
+                ok: {
+                    label: "Report",
+                    className: 'btn-primary',
+                    callback: function(){
+                        Example.show('Custom OK clicked');
+                    }
+                }
+            }
+            });
+        } );
+    });
 </script>
 
 <!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
