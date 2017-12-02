@@ -7,3 +7,7 @@ function reqPermission(id) {
         document.getElementById(id).getElementsByClassName("btn")[0].textContent = "Enable";
     }
 }
+
+function getPermissions() {
+    // return dumb json
+}
