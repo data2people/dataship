@@ -48,12 +48,11 @@ public class UserController {
     	String serverErr = "Internal Server Error";
     	try {
     		serverErr = new ObjectMapper().writeValueAsString(serverErr);
-	    	for(ImpulseUser user : userRepository.findAll())
-	    		userIDs.add(user.getId());
-	    	if(!userIDs.isEmpty())
-				return ResponseEntity.status(200).body(new ObjectMapper().writeValueAsString(userIDs));
-			else
-				return ResponseEntity.status(404).body(new ObjectMapper().writeValueAsString("No users exist"));
+			Iterable<ImpulseUser> users = userRepository.findAll();
+//	    	for(ImpulseUser user : userRepository.findAll())
+//	    		userIDs.add(user.getId());
+
+			return ResponseEntity.status(200).body(users);
     	} catch (Exception e) {
     		return ResponseEntity.status(500).body(serverErr);
         }
