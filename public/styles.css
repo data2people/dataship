@@ -1,5 +1,12 @@
+
 #my-form {
     margin-top: -80px;
+}
+@media only screen and (max-width: 660px) {
+    #my-form {
+                margin-top: 0px;
+                    
+    }
 }
 #my-form * {
     font-family: 'Inconsolata', monospace;
