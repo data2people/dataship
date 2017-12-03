@@ -1,3 +1,16 @@
+#my-form * {
+    font-family: 'Inconsolata', monospace;
+}
+
+#my-form input {
+    color: white;
+    text-align: center;
+    font-size: 54px;
+    background-color: #4457c0;;
+    border: 0px;
+    border-bottom: 4px solid white;
+}
+
 .my-side-menu button {
     width: 70%;
     margin-left : 80px;

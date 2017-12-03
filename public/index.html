@@ -9,17 +9,20 @@
   <meta name="google" content="notranslate" />
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
-  
+  <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+
   
   <link rel="apple-touch-icon" sizes="180x180" href="./assets/apple-icon-180x180.png">
   <link href="./assets/favicon.ico" rel="icon">
 
-  <link href="styles.css" rel="stylesheet">
 
 
   <title>Dataship</title>
 
-<link href="./main.550dcf66.css" rel="stylesheet"></head>
+<link href="./main.550dcf66.css" rel="stylesheet">
+
+  <link href="./styles.css" rel="stylesheet">
+</head>
 
 <body> <!-- Add your content of header -->
 <header>
@@ -61,18 +64,20 @@
   <div class="hero-full-container background-image-container white-text-container">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 form-main">
+        <div class="col-xs-12 form-main" id="my-form">
 
       <h1>I want to </h1>
             <input type="text" id="action" 
             list="action-datalist" 
-            placeholder="e.g. delete"
-            onmouseover="focus();" 
-             />
+            placeholder="e.g. access"
+            onmouseover="focus();"
+            />
             <datalist id="action-datalist">
-                <option value="Read"/>
-                <option value="Download"/>
-                <option value="Delete"/>
+                <option id="learn about" value="learn about"/>
+                <option id="access" value="access"/>
+                <option id="transfer" value="transfer"/>
+                <option id="delete" value="delete"/>
+                <option id="correct" value="correct"/>
             </datalist>
             <h1>my data from </h1>
             <input type="text" id="provider" 
@@ -85,9 +90,10 @@
                 <option id="google-plus" value="Google Plus"/>
                 <option id="google-fit" value="Google Fit"/>
             </datalist>
-            <h1>.</h1>
+            <h1></h1>
+            
 
-          <a href="#" id="submit-request-button" class="btn btn-default btn-lg" title="">Submit request.</a>
+          <a href="#" id="submit-request-button" class="btn btn-default btn-lg" title="">Submit Request.</a>
         </div>
       </div>
     </div>
@@ -183,6 +189,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="./handle-logins.js"></script>
+<script type="text/javascript" src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
 
 <script>
 $(document).ready(function() {

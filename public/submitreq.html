@@ -34,7 +34,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="./index.html" title="">
+        <a class="navbar-brand" href="./submitreq.html" title="">
           <img src="./assets/images/logofull.png" width="300px" class="navbar-logo-img" alt="">
         </a>
       </div>
@@ -43,12 +43,12 @@
         <ul class="nav navbar-nav navbar-right">
           <li><a href="./submitreq.html" title="">Home</a></li>
           <li><a href="./project.html" title="">My requests</a></li>
-          <li><a href="./contracts.html" title="">Contracts</a></li>
           <li><a href="./accesscontrol.html" title="">Access control</a></li>
           <li><a class="little-right-margin" href="./mydata.html" title="">My data</a></li>
+          <li><a href="#" title="">Sign in</a></li>
           <li>
             <p>
-              <a href="http://dataship.eu/" class="btn btn-default navbar-btn" title="">Sign out</a>
+              <a href="#" class="btn btn-default navbar-btn" title="">Sign up</a>
             </p>
           </li>
 
@@ -65,16 +65,9 @@
         <div class="col-xs-12 form-main">
 
 			<h1>I want to </h1>
-            <input type="text" id="action" 
-            list="action-datalist" 
-            placeholder="e.g. delete"
-            onmouseover="focus();" 
-             />
-            <datalist id="action-datalist">
-                <option value="Read"/>
-                <option value="Download"/>
-                <option value="Delete"/>
-            </datalist>
+            <div id="default-suggestions">
+                <input class="typeahead" type="text" placeholder="action">
+            </div>
             <h1>my data from </h1>
             <input type="text" id="provider" 
             list="provider-datalist" 
@@ -164,16 +157,16 @@
   <div class="container">
     <div class="row">
 
-
+     
       <div class="col-xs-12">
-        <h3>Dataship</h3>
+        <h3>Mountain</h3>
 
         <div class="row">
           <div class="col-xs-12 col-sm-7">
-            <p><small>Data of people, to the people</small>
+            <p><small>Website created with <a href="http://www.mashup-template.com/" title="Create website with free html template">Mashup Template</a>/<a href="https://www.unsplash.com/" title="Beautiful Free Images">Unsplash</a></small>
             </p>
           </div>
-       </div>
+        </div>
         
         
       </div>
@@ -204,6 +197,37 @@ $(document).ready(function() {
     })
 });
 
+var actions = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('action'),
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    identify: function(obj) { return obj.team;  },
+    prefetch: 'actions.json'
+
+});
+
+function actionsWithDefaults(q, sync) {
+    if (q === '') {
+            sync(nflTeams.get('learn about', 'access', 'transfer', 'delete', 'correct'));
+    }
+
+    else {
+            actions.search(q, sync);
+    }
+
+}
+
+$('#default-suggestions .typeahead').typeahead({
+    minLength: 0,
+    highlight: true
+
+},
+{
+    name: 'actions',
+    display: 'action',
+    source: actionsWithDefaults
+
+});
+
 </script>
 
 <script>
@@ -214,6 +238,20 @@ $(document).ready(function() {
     updateProviderStates(providerState, "submitreq")
   });
 </script>
-<script type="text/javascript" src="./main.0cf8b554.js"></script></body>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID 
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+  ga('create', 'UA-XXXXX-X', 'auto');
+  ga('send', 'pageview');
+</script>
+
+--> <script type="text/javascript" src="./main.0cf8b554.js"></script></body>
 
 </html>
