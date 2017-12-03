@@ -1,0 +1,34 @@
+{
+    "data": [
+        [
+            "Facebook",
+            "Location history",
+            "Friends near me service"
+        ],
+        [ 
+            "Facebook",
+            "Contacts",
+            "Basic service"
+        ],
+        [
+            "Google",
+            "Current location",
+            "Real time traffic information"
+        ],
+        [ 
+            "University of Berlin",
+            "Sleep patterns",
+            "€30.99"
+        ],
+        [ 
+            "Instagram",
+            "Public pictures",
+            "Basic service"
+        ],
+        [ 
+            "Mom",
+            "Netflix movie list",
+            "None"
+        ]
+    ]
+}

@@ -1,3 +1,6 @@
+#my-form {
+    margin-top: -80px;
+}
 #my-form * {
     font-family: 'Inconsolata', monospace;
 }
@@ -11,18 +14,18 @@
     border-bottom: 4px solid white;
 }
 
+
 .my-side-menu button {
+    text-align: left;
     width: 70%;
     margin-left : 80px;
     border-bottom: 0px;
     border-radius: 0px;
 }
 .my-side-menu button.first {
-    border-radius: 7px 7px 0px 0px;
 }
 .my-side-menu button.last {
     border-bottom: 1px solid #1763e9;
-    border-radius: 0px 0px 7px 7px;
 }
 
 .my-side-panel {
@@ -32,8 +35,7 @@
     align-items: stretch;
     align-content: stretch;
     flex-wrap: wrap;
-    border: 1px solid black;
-    border-radius: 10px;
+    box-shadow: 0 7px 11px rgba(0,0,0,0.20), 0 11px 9px rgba(0,0,0,0.16);
 }
 
 .my-side-panel ul {
@@ -86,6 +88,9 @@
 }
 .normalh2::after {
     content: "";
+}
+.normalh2 {
+    margin-top: -40px;
 }
 
 

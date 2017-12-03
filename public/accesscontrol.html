@@ -6,8 +6,7 @@
   <meta content="IE=edge" http-equiv="X-UA-Compatible">
   <meta content="width=device-width,initial-scale=1" name="viewport">
   <meta content="description" name="description">
-  <meta name="google" content="notranslate" />
-  <meta content="Mashup templates have been developped by Orson.io team" name="author">
+  <meta name="google" content="notranslate" /> <meta content="Mashup templates have been developped by Orson.io team" name="author">
 
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
@@ -72,18 +71,16 @@
             <table id="myrequests" class="display" style="cursor: pointer;" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>Company</th>
+                    <th>Accessed by</th>
                     <th>Data type</th>
-                    <th>Active since</th>
-                    <th>Agreement</th>
+                    <th>Terms</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
-                    <th>Company</th>
+                    <th>Accessed by</th>
                     <th>Data type</th>
-                    <th>Active since</th>
-                    <th>Agreement</th>
+                    <th>Terms</th>
                 </tr>
                 </tfoot>
             </table>
@@ -129,7 +126,7 @@
 
     $(document).ready(function() {
         var table = $('#myrequests').DataTable( {
-            "ajax": 'dumbdata.txt'
+            "ajax": 'dumbdata2.txt'
         });
 
       $('#myrequests tbody').on( 'click', 'tr', function () {
