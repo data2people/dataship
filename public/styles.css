@@ -1,34 +1,50 @@
-.my-side-menu list-group-item {
-    width: 200px;
+.my-side-menu button {
+    width: 70%;
+    margin-left : 80px;
+    border-bottom: 0px;
+    border-radius: 0px;
+}
+.my-side-menu button.first {
+    border-radius: 7px 7px 0px 0px;
+}
+.my-side-menu button.last {
+    border-bottom: 1px solid #1763e9;
+    border-radius: 0px 0px 7px 7px;
 }
 
 .my-side-panel {
+    font-family: 'Cabin', sans-serif;
     font-size: 16px;
     display: flex;
-    justify-content: space-evenly;
+    align-items: stretch;
+    align-content: stretch;
+    flex-wrap: wrap;
+    border: 1px solid black;
+    border-radius: 10px;
 }
 
 .my-side-panel ul {
     list-style: circle outside none;
+    margin-left: -24px;
 }
 
 .my-side-panel h4 {
-    font-family: sans-serif;
+    font-family: 'Cabin', sans-serif;
     font-size: 16px;
     color: #000000 !important;
+    font-weight: bold;
 }
 
 .my-side-panel div {
     padding: 30px;
     padding-right: 70px;
     margin-right: 20px;
-    border: 1px solid black;
-    border-radius: 10px;
+
 }
 .my-side-panel a {
-    font-family: sans-serif;
+    font-family: 'cabin', sans-serif;
     text-decoration: underline;
-    font-weight: bold;
+    font-weight: normal;
     color: #000000 !important;
 }
 
