@@ -5,7 +5,15 @@
 @media only screen and (max-width: 660px) {
     #my-form {
                 margin-top: 0px;
-                    
+                 
+    }
+    #my-form * {
+        font-size: 32px;
+        line-height: 80%
+    }
+    #my-form input {
+        font-size: 24px;
+        max-width: 300px;
     }
 }
 #my-form * {
