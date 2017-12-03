@@ -15,6 +15,9 @@
         font-size: 24px;
         max-width: 300px;
     }
+    .navbar-logo-img {
+        width: 200px;
+    }
 }
 #my-form * {
     font-family: 'Inconsolata', monospace;
