@@ -67,23 +67,23 @@
       <div class="row">
         <div class="col-xs-12 col-md-8 col-md-offset-2">
 
-            <h2 class="normalh2">My requests</h2>
+            <h2 class="normalh2">Control who can access your data</h2>
 
-            <table id="myrequests" class="display" width="100%" cellspacing="0">
+            <table id="myrequests" class="display" style="cursor: pointer;" width="100%" cellspacing="0">
                 <thead>
                 <tr>
                     <th>Company</th>
-                    <th>Request type</th>
-                    <th>State</th>
-                    <th>Due date</th>
+                    <th>Data type</th>
+                    <th>Active since</th>
+                    <th>Agreement</th>
                 </tr>
                 </thead>
                 <tfoot>
                 <tr>
                     <th>Company</th>
-                    <th>Request type</th>
-                    <th>State</th>
-                    <th>Due date</th>
+                    <th>Data type</th>
+                    <th>Active since</th>
+                    <th>Agreement</th>
                 </tr>
                 </tfoot>
             </table>
@@ -132,6 +132,14 @@
             "ajax": 'dumbdata.txt'
         });
 
+      $('#myrequests tbody').on( 'click', 'tr', function () {
+          $(this).toggleClass('selected');
+      } );
+   
+      $('#button').click( function () {
+          alert( table.rows('.selected').data().length +' row(s) selected' );
+      } );
+
         $('#myrequests tbody').on('click', 'tr', function () {
             var data = table.row( this  ).data();
 
@@ -139,24 +147,24 @@
             var dialog = bootbox.dialog({
             title: 'Take action',
             message: "<p>This dialog has buttons. Each button has it's own callback function.</p>",
-            message: "<ul><li>Company: " + data[0] + "</li><li>Request type: " + data[1] + "</li><li>State: " + data[2] + "</li><li>Due date: " + data[3] + "</li></ul>",
+            message: "<ul><li>Company: <b>" + data[0] + "</b></li><li>Request type: <b>" + data[1] + "</b></li><li>State: <b>" + data[2] + "</b></li><li>Agreement <b>" + data[3] + "</b></li></ul>",
             buttons: {
                 cancel: {
-                    label: "Ping",
+                    label: "Update request",
                     className: 'btn-primary',
                     callback: function(){
                         Example.show('Custom cancel clicked');
                     }
                 },
                 noclose: {
-                    label: "Stop",
+                    label: "Cancel contract",
                     className: 'btn-primary',
                     callback: function(){
                         Example.show('Custom button clicked');
                     }
                 },
                 ok: {
-                    label: "Report",
+                    label: "Report details",
                     className: 'btn-primary',
                     callback: function(){
                         Example.show('Custom OK clicked');
