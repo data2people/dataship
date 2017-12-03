@@ -66,32 +66,48 @@
 <div class="section-container">
     <div class="container">
       <div class="row">
-        <div class="col-xs-12 col-md-8 col-md-offset-2">
-
-            <h2 class="normalh2">Contracts as provider</h2>
-
-            <table id="myrequests" class="display" width="100%" cellspacing="0">
-                <thead>
-                <tr>
-                    <th>Company</th>
-                    <th>Request type</th>
-                    <th>State</th>
-                    <th>Due date</th>
-                </tr>
-                </thead>
-                <tfoot>
-                <tr>
-                    <th>Company</th>
-                    <th>Request type</th>
-                    <th>State</th>
-                    <th>Due date</th>
-                </tr>
-                </tfoot>
-            </table>
-
-
-       </div>
-      </div>
+		<h2 class="normalh2">My data</h2>
+          <div class="col-md-4">
+            <div class="list-group wizard-menu my-side-menu">
+                <a href="#" class="list-group-item active step-1-menu" data-for=".step-1">
+                    <h3 class="list-group-item-heading">Personal   
+                    </h3>
+                </a>
+                <a href="#" class="list-group-item step-2-menu" data-for=".step-2">
+                    <h3 class="list-group-item-heading">Social
+                    </h3>
+                </a>
+                <a href="#" class="list-group-item step-3-menu" data-for=".step-3">
+                    <h3 class="list-group-item-heading">Financial 
+                    </h3>
+                </a>
+                <a href="#" class="list-group-item step-4-menu" data-for=".step-4">
+                    <h3 class="list-group-item-heading">Health
+                    </h3>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-8 my-side-panel">
+            <div>
+                <h4>Data types:</h4>
+                <ul>
+                    <li><a>LinkedIn data</a></li>
+                    <li><a>Curriculum Vitae</a></li>
+                    <li><a>Date of birth</a></li>
+                    <li><a>Family</a></li>
+                    <li><a>Pictures</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Sources</h4>
+                <ul>
+                    <li><a>Reecho</a></li>
+                    <li><a>Facebook</a></li>
+                    <li><a>Google</a></li>
+                    <li><a>Tinder</a></li>
+                </ul>
+            </div>
+        </div>
     </div>
   </div>
 
@@ -127,46 +143,6 @@
     navActivePage();
     scrollRevelation('.reveal');
   });
-
-    $(document).ready(function() {
-        var table = $('#myrequests').DataTable( {
-            "ajax": 'dumbdata.txt'
-        });
-
-        $('#myrequests tbody').on('click', 'tr', function () {
-            var data = table.row( this  ).data();
-
-            // dialog
-            var dialog = bootbox.dialog({
-            title: 'Take action',
-            message: "<p>This dialog has buttons. Each button has it's own callback function.</p>",
-            message: "<ul><li>Company: " + data[0] + "</li><li>Request type: " + data[1] + "</li><li>State: " + data[2] + "</li><li>Due date: " + data[3] + "</li></ul>",
-            buttons: {
-                cancel: {
-                    label: "Ping",
-                    className: 'btn-primary',
-                    callback: function(){
-                        Example.show('Custom cancel clicked');
-                    }
-                },
-                noclose: {
-                    label: "Stop",
-                    className: 'btn-primary',
-                    callback: function(){
-                        Example.show('Custom button clicked');
-                    }
-                },
-                ok: {
-                    label: "Report",
-                    className: 'btn-primary',
-                    callback: function(){
-                        Example.show('Custom OK clicked');
-                    }
-                }
-            }
-            });
-        } );
-    });
 </script>
 
 <script type="text/javascript" src="./main.0cf8b554.js"></script></body>

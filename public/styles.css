@@ -1,3 +1,37 @@
+.my-side-menu list-group-item {
+    width: 200px;
+}
+
+.my-side-panel {
+    font-size: 16px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.my-side-panel ul {
+    list-style: circle outside none;
+}
+
+.my-side-panel h4 {
+    font-family: sans-serif;
+    font-size: 16px;
+    color: #000000 !important;
+}
+
+.my-side-panel div {
+    padding: 30px;
+    padding-right: 70px;
+    margin-right: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.my-side-panel a {
+    font-family: sans-serif;
+    text-decoration: underline;
+    font-weight: bold;
+    color: #000000 !important;
+}
+
 .list-group-item {
     display: flex;
     justify-content: space-between;
