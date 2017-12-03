@@ -1,4 +1,10 @@
+impulse/repos/AccessRepository.class
 impulse/models/ImpulseUser.class
 impulse/controllers/UserController.class
+impulse/models/ImpulseRequest.class
+impulse/controllers/AccessController.class
+impulse/models/ImpulseAccess.class
+impulse/controllers/RequestController.class
 impulse/repos/UserRepository.class
+impulse/repos/RequestRepository.class
 impulse/App.class
