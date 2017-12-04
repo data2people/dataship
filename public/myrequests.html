@@ -7,7 +7,6 @@
     <meta content="width=device-width,initial-scale=1" name="viewport">
     <meta content="description" name="description">
     <meta name="google" content="notranslate" />
-    <meta content="Mashup templates have been developped by Orson.io team" name="author">
 
     <!-- Disable tap highlight on IE -->
     <meta name="msapplication-tap-highlight" content="no">
@@ -42,7 +41,6 @@
                 </button>
                 <a class="navbar-brand" href="./gdpr" title="">
                     <img src="./assets/images/logofull.png" width="300px" class="navbar-logo-img" alt="">
-
                 </a>
             </div>
 
@@ -69,21 +67,23 @@
             <div class="row">
                 <div class="col-xs-12 col-md-8 col-md-offset-2">
 
-                    <h2 class="normalh2">Control who can access your data</h2>
+                    <h2 class="normalh2">My requests</h2>
 
-                    <table id="myrequests" class="display" style="cursor: pointer;" width="100%" cellspacing="0">
+                    <table id="myrequests" class="display" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Accessed by</th>
-                                <th>Data type</th>
-                                <th>Terms</th>
+                                <th>Company</th>
+                                <th>Request type</th>
+                                <th>State</th>
+                                <th>Due date</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Accessed by</th>
-                                <th>Data type</th>
-                                <th>Terms</th>
+                                <th>Company</th>
+                                <th>Request type</th>
+                                <th>State</th>
+                                <th>Due date</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -102,7 +102,7 @@
 
                     <div class="row">
                         <div class="col-xs-12 col-sm-7">
-                            <a href="./doc.html">Read our API documentation</a>
+                            <a href="./doc.html">Read our documentation</a>
                         </div>
                     </div>
 
@@ -125,15 +125,7 @@
 
         $(document).ready(function() {
             var table = $('#myrequests').DataTable({
-                "ajax": 'dumbdata2.txt'
-            });
-
-            $('#myrequests tbody').on('click', 'tr', function() {
-                $(this).toggleClass('selected');
-            });
-
-            $('#button').click(function() {
-                alert(table.rows('.selected').data().length + ' row(s) selected');
+                "ajax": 'dumbdata.txt'
             });
 
             $('#myrequests tbody').on('click', 'tr', function() {
@@ -143,24 +135,24 @@
                 var dialog = bootbox.dialog({
                     title: 'Take action',
                     message: "<p>This dialog has buttons. Each button has it's own callback function.</p>",
-                    message: "<ul><li>Company: <b>" + data[0] + "</b></li><li>Request type: <b>" + data[1] + "</b></li><li>State: <b>" + data[2] + "</b></li><li>Agreement <b>" + data[3] + "</b></li></ul>",
+                    message: "<ul><li>Company: " + data[0] + "</li><li>Request type: " + data[1] + "</li><li>State: " + data[2] + "</li><li>Due date: " + data[3] + "</li></ul>",
                     buttons: {
                         cancel: {
-                            label: "Update request",
+                            label: "Ping",
                             className: 'btn-primary',
                             callback: function() {
                                 Example.show('Custom cancel clicked');
                             }
                         },
                         noclose: {
-                            label: "Cancel contract",
+                            label: "Stop",
                             className: 'btn-primary',
                             callback: function() {
                                 Example.show('Custom button clicked');
                             }
                         },
                         ok: {
-                            label: "Report details",
+                            label: "Report",
                             className: 'btn-primary',
                             callback: function() {
                                 Example.show('Custom OK clicked');

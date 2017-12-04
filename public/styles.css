@@ -1,11 +1,9 @@
-
 #my-form {
     margin-top: -80px;
 }
 @media only screen and (max-width: 660px) {
     #my-form {
-                margin-top: 0px;
-                 
+        margin-top: 0px;
     }
     #my-form * {
         font-size: 32px;
@@ -15,37 +13,29 @@
         font-size: 24px;
         max-width: 300px;
     }
-    .navbar-logo-img {
-        width: 200px;
-    }
 }
 #my-form * {
     font-family: 'Inconsolata', monospace;
 }
-
 #my-form input {
     color: white;
     text-align: center;
     font-size: 54px;
-    background-color: #4457c0;;
+    background-color: #4457c0;
+    ;
     border: 0px;
     border-bottom: 4px solid white;
 }
-
-
 .my-side-menu button {
     text-align: left;
     width: 70%;
-    margin-left : 80px;
+    margin-left: 80px;
     border-bottom: 0px;
     border-radius: 0px;
 }
-.my-side-menu button.first {
-}
-.my-side-menu button.last {
+.my-side-menu button.first {} .my-side-menu button.last {
     border-bottom: 1px solid #1763e9;
 }
-
 .my-side-panel {
     font-family: 'Cabin', sans-serif;
     font-size: 16px;
@@ -53,26 +43,22 @@
     align-items: stretch;
     align-content: stretch;
     flex-wrap: wrap;
-    box-shadow: 0 7px 11px rgba(0,0,0,0.20), 0 11px 9px rgba(0,0,0,0.16);
+    box-shadow: 0 7px 11px rgba(0, 0, 0, 0.20), 0 11px 9px rgba(0, 0, 0, 0.16);
 }
-
 .my-side-panel ul {
     list-style: circle outside none;
     margin-left: -24px;
 }
-
 .my-side-panel h4 {
     font-family: 'Cabin', sans-serif;
     font-size: 16px;
     color: #000000 !important;
     font-weight: bold;
 }
-
 .my-side-panel div {
     padding: 30px;
     padding-right: 70px;
     margin-right: 20px;
-
 }
 .my-side-panel a {
     font-family: 'cabin', sans-serif;
@@ -80,7 +66,6 @@
     font-weight: normal;
     color: #000000 !important;
 }
-
 .list-group-item {
     display: flex;
     justify-content: space-between;
@@ -88,16 +73,12 @@
     border: 2px solid black;
     padding: 20px;
 }
-
 .list-group-item button {
     width: 100px;
 }
-
-.modal-backdrop
-{
-        opacity:0.5 !important;
+.modal-backdrop {
+    opacity: 0.5 !important;
 }
-
 .little-right-margin {
     margin-rigth: 50px;
 }
@@ -110,10 +91,7 @@
 .normalh2 {
     margin-top: -40px;
 }
-
-
-.form-main select
-{
+.form-main select {
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -128,12 +106,12 @@
     font: 16px Arial, Helvetica, sans-serif;
     height: 45px;
 }
-.form-main textarea{
-    resize:none;
+.form-main textarea {
+    resize: none;
     overflow: hidden;
 }
 .form-main input[type="button"],
-.form-main input[type="submit"]{
+.form-main input[type="submit"] {
     -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
     -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
     box-shadow: inset 0px 1px 0px 0px #45D6D6;
@@ -150,6 +128,6 @@
 }
 .form-main input[type="button"]:hover,
 .form-main input[type="submit"]:hover {
-    background:linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
-    background-color:#34CACA;
+    background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+    background-color: #34CACA;
 }
