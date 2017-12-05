@@ -1,23 +1,24 @@
-#my-form {
+/* index.html */
+.form-main {
     margin-top: -80px;
 }
 @media only screen and (max-width: 660px) {
-    #my-form {
+    .form-main {
         margin-top: 0px;
     }
-    #my-form * {
+    .form-main * {
         font-size: 32px;
         line-height: 80%
     }
-    #my-form input {
+    .form-main input {
         font-size: 24px;
         max-width: 300px;
     }
 }
-#my-form * {
+.form-main * {
     font-family: 'Inconsolata', monospace;
 }
-#my-form input {
+.form-main input {
     color: white;
     text-align: center;
     font-size: 54px;
@@ -26,6 +27,49 @@
     border: 0px;
     border-bottom: 4px solid white;
 }
+
+.form-main select {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    display: block;
+    width: 100%;
+    padding: 7px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+    background: transparent;
+    margin-bottom: 10px;
+    font: 16px Arial, Helvetica, sans-serif;
+    height: 45px;
+}
+.form-main textarea {
+    resize: none;
+    overflow: hidden;
+}
+.form-main input[type="button"],
+.form-main input[type="submit"] {
+    -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    box-shadow: inset 0px 1px 0px 0px #45D6D6;
+    background-color: #2CBBBB;
+    border: 1px solid #27A0A0;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 14px;
+    padding: 8px 18px;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.form-main input[type="button"]:hover,
+.form-main input[type="submit"]:hover {
+    background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
+    background-color: #34CACA;
+}
+
+/* mydata.html */
 .my-side-menu button {
     text-align: left;
     width: 70%;
@@ -66,21 +110,15 @@
     font-weight: normal;
     color: #000000 !important;
 }
-.list-group-item {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    border: 2px solid black;
-    padding: 20px;
-}
-.list-group-item button {
-    width: 100px;
-}
-.modal-backdrop {
-    opacity: 0.5 !important;
-}
+
+/* general */
 .little-right-margin {
     margin-rigth: 50px;
+}
+
+/* overwriting template */
+.modal-backdrop {
+    opacity: 0.5 !important;
 }
 .navbar-logo-img {
     margin-top: -30px !important;
@@ -90,44 +128,4 @@
 }
 .normalh2 {
     margin-top: -40px;
-}
-.form-main select {
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    outline: none;
-    display: block;
-    width: 100%;
-    padding: 7px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-    background: transparent;
-    margin-bottom: 10px;
-    font: 16px Arial, Helvetica, sans-serif;
-    height: 45px;
-}
-.form-main textarea {
-    resize: none;
-    overflow: hidden;
-}
-.form-main input[type="button"],
-.form-main input[type="submit"] {
-    -moz-box-shadow: inset 0px 1px 0px 0px #45D6D6;
-    -webkit-box-shadow: inset 0px 1px 0px 0px #45D6D6;
-    box-shadow: inset 0px 1px 0px 0px #45D6D6;
-    background-color: #2CBBBB;
-    border: 1px solid #27A0A0;
-    display: inline-block;
-    cursor: pointer;
-    color: #FFFFFF;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 14px;
-    padding: 8px 18px;
-    text-decoration: none;
-    text-transform: uppercase;
-}
-.form-main input[type="button"]:hover,
-.form-main input[type="submit"]:hover {
-    background: linear-gradient(to bottom, #34CACA 5%, #30C9C9 100%);
-    background-color: #34CACA;
 }
