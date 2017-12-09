@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="gdpr_actions">
+    <item>learn more</item>
+    <item>access</item>
+    <item>transfer</item>
+    <item>delete</item>
+    <item>correct</item>
+</string-array>
+</resources>
