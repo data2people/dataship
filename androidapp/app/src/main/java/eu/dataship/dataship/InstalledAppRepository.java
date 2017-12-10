@@ -1,6 +1,8 @@
 package eu.dataship.dataship;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.paging.DataSource;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.util.Log;
@@ -31,13 +33,19 @@ public class InstalledAppRepository {
         return installedAppDao.getAllNames();
     }
 
+    public DataSource.Factory<Integer, InstalledApp> getPagedApps() {
+        refreshAppNames();
+
+        return installedAppDao.getAllPagedApps();
+    }
+
     private void refreshAppNames() {
         Log.d(TAG, "refreshAppNames: called refreshAppNames");
         executor.execute(() -> {
             // running in a background thread
 
             //get a list of installed apps.
-            List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.COMPONENT_ENABLED_STATE_DEFAULT);
+            List<PackageInfo> packages = packageManager.getInstalledPackages(PackageManager.GET_META_DATA);
 
             List<InstalledApp> updatedList = new ArrayList<InstalledApp>();
 
@@ -49,7 +57,7 @@ public class InstalledAppRepository {
                 String app_name = packageInfo.applicationInfo.loadLabel(packageManager).toString();
 
                 // check for null as package_name will be primary key in Room database
-                if (package_name != null) {
+                if (package_name != null && !isSystemPackage(packageInfo)) {
                     updatedList.add(new InstalledApp(
                             package_name,
                             app_name,
@@ -62,5 +70,16 @@ public class InstalledAppRepository {
         });
     }
 
+    public void updateSingleApp(InstalledApp app, boolean checked) {
+        executor.execute(() -> {
+            Log.d(TAG, "updateSingleApp: updated single InstalledApp: " + checked);
+            app.setSelected(checked);
+            installedAppDao.updateSingleApp(app);
+        });
+    }
+
+    private boolean isSystemPackage(PackageInfo packageInfo) {
+        return ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
+    }
 
 }
