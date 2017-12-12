@@ -29,10 +29,4 @@ public class NewRequestViewModel extends ViewModel {
         }
         return installedApps;
     }
-
-    public void updateSingleApp(InstalledApp app, boolean checked) {
-        // forward to repository
-        installedAppRepository.updateSingleApp(app, checked);
-    }
-
 }

@@ -51,17 +51,6 @@
         app:layout_constraintTop_toBottomOf="@+id/newrequest_action_spinner"
         tools:text="my data from" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="48dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:layout_marginEnd="8dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline"
-        app:srcCompat="@drawable/ic_send_black_24dp" />
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/providers_recycler_view"
         android:layout_width="0dp"
@@ -75,6 +64,33 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/newrequest_tv_mydatafrom" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_select_all"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginStart="8dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/fab_send_email"
+        app:layout_constraintEnd_toEndOf="@+id/fab_send_email"
+        app:layout_constraintStart_toStartOf="@+id/fab_send_email"
+        app:srcCompat="@drawable/ic_check_box_black_24dp"
+        android:scaleType="center"
+        android:layout_marginLeft="8dp" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_send_email"
+        android:layout_width="56dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:srcCompat="@drawable/ic_send_black_24dp"
+        android:scaleType="center"
+        android:layout_marginRight="8dp" />
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"

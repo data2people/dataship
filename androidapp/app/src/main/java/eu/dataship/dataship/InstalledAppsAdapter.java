@@ -1,8 +1,6 @@
 package eu.dataship.dataship;
 
-import android.arch.lifecycle.LifecycleOwner;
 import android.arch.paging.PagedListAdapter;
-import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
@@ -16,8 +14,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,6 +26,8 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
 
     private PackageManager packageManager;
     private NewRequestViewModel viewModel;
+
+    private List<InstalledApp> selected = new ArrayList<>();
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.installedappslist_layout)
@@ -41,12 +41,14 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
 
         private InstalledApp app;
 
-        private PackageManager packageManager;
+        private List<InstalledApp> selected;
         private NewRequestViewModel viewModel;
+        private PackageManager packageManager;
 
-        public ViewHolder(View view, NewRequestViewModel viewModel, PackageManager packageManager) {
+        public ViewHolder(View view, List<InstalledApp> selected, NewRequestViewModel viewModel, PackageManager packageManager) {
             super(view);
             ButterKnife.bind(this, view);
+            this.selected = selected;
             this.viewModel = viewModel;
             this.packageManager = packageManager;
         }
@@ -61,7 +63,11 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
                 e.printStackTrace();
             }
             appIcon.setImageDrawable(icon);
-            checkBox.setChecked(app.isSelected());
+            if (selected.contains(app)) {
+                checkBox.setChecked(true);
+            } else {
+                checkBox.setChecked(false);
+            }
         }
         public void clear() {
             this.appName.setText("Loading...");
@@ -71,9 +77,13 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
 
         @OnClick(R.id.installedappslist_layout)
         public void rowClicked(LinearLayout clickedRow) {
-            viewModel.updateSingleApp(app, !checkBox.isChecked());
-            // force viewholder update (to reflect database data
-            bindTo(app);
+            boolean oldCheckboxValue = checkBox.isChecked();
+            checkBox.setChecked(!oldCheckboxValue);
+            if (oldCheckboxValue == false) {
+                selected.add(app);
+            } else {
+                selected.remove(app);
+            }
         }
 
         @OnClick(R.id.installedappslist_row_checkbox)
@@ -89,7 +99,7 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.installedappslist_row, parent, false);
-        return new ViewHolder(view, viewModel, packageManager);
+        return new ViewHolder(view, selected, viewModel, packageManager);
     }
 
     @Override
@@ -117,5 +127,24 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
             return oldApp.getName().equals(newApp.getName());
         }
     };
+
+    public void toggleSelectAll() {
+        if (getCurrentList() != null) {
+            if (getCurrentList().size() == selected.size()) {
+                // deselect all
+                selected.clear();
+                notifyDataSetChanged();
+            } else {
+                // select all
+                selected.clear();
+                selected.addAll(getCurrentList());
+                notifyDataSetChanged();
+            }
+        }
+    }
+
+    public List<InstalledApp> getSelected() {
+        return selected;
+    }
 }
 

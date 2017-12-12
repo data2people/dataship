@@ -27,9 +27,6 @@ public interface InstalledAppDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertAll(List<InstalledApp> installedApps);
 
-    @Update
-    void updateSingleApp(InstalledApp installedApp);
-
     @Delete
     void delete(InstalledApp installedApp);
 

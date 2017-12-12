@@ -70,14 +70,6 @@ public class InstalledAppRepository {
         });
     }
 
-    public void updateSingleApp(InstalledApp app, boolean checked) {
-        executor.execute(() -> {
-            Log.d(TAG, "updateSingleApp: updated single InstalledApp: " + checked);
-            app.setSelected(checked);
-            installedAppDao.updateSingleApp(app);
-        });
-    }
-
     private boolean isSystemPackage(PackageInfo packageInfo) {
         return ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
     }

@@ -14,17 +14,6 @@ public class InstalledApp {
 
     private String email;
 
-    private boolean selected;
-
-
-    public boolean isSelected() {
-        return selected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.selected = selected;
-    }
-
     public String getPackage_name() {
         return package_name;
     }
@@ -53,6 +42,5 @@ public class InstalledApp {
         this.package_name = package_name;
         this.name = name;
         this.email = email;
-        this.selected = false;
     }
 }
