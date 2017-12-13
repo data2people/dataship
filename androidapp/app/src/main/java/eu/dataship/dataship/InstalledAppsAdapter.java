@@ -42,14 +42,12 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
         private InstalledApp app;
 
         private List<InstalledApp> selected;
-        private NewRequestViewModel viewModel;
         private PackageManager packageManager;
 
-        public ViewHolder(View view, List<InstalledApp> selected, NewRequestViewModel viewModel, PackageManager packageManager) {
+        public ViewHolder(View view, List<InstalledApp> selected, PackageManager packageManager) {
             super(view);
             ButterKnife.bind(this, view);
             this.selected = selected;
-            this.viewModel = viewModel;
             this.packageManager = packageManager;
         }
 
@@ -99,7 +97,7 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.installedappslist_row, parent, false);
-        return new ViewHolder(view, selected, viewModel, packageManager);
+        return new ViewHolder(view, selected, packageManager);
     }
 
     @Override

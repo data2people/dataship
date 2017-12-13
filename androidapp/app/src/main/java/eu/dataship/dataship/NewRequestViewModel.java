@@ -25,7 +25,11 @@ public class NewRequestViewModel extends ViewModel {
     public LiveData<PagedList<InstalledApp> > getApps() {
         if (this.installedApps == null) {
             installedApps = new LivePagedListBuilder<>(
-                    installedAppRepository.getPagedApps(), 50).build();
+                    installedAppRepository.getPagedApps(),
+                    new PagedList.Config.Builder()
+                            .setPrefetchDistance(10)
+                            .setPageSize(20)
+                            .build()).build();
         }
         return installedApps;
     }
