@@ -1,4 +1,4 @@
-package eu.dataship.dataship;
+package eu.dataship.dataship.other_views;
 
 import android.arch.paging.PagedListAdapter;
 import android.content.pm.PackageManager;
@@ -20,7 +20,9 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import eu.dataship.dataship.AppDatabase.InstalledApp;
+import eu.dataship.dataship.NewRequestViewModel;
+import eu.dataship.dataship.R;
+import eu.dataship.dataship.data.InstalledApp;
 
 public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, InstalledAppsAdapter.ViewHolder> {
 

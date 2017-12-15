@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Dataship</string>
     <string name="whats_gdpr_link">What\'s GDPR?</string>
+    <string name="user_info_explanation">We will need your email address and full name to generate the emails. This information will only be stored on your device.</string>
 </resources>

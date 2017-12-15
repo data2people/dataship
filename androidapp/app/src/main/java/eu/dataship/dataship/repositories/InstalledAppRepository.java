@@ -1,4 +1,4 @@
-package eu.dataship.dataship;
+package eu.dataship.dataship.repositories;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.paging.DataSource;
@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
 
-import eu.dataship.dataship.AppDatabase.InstalledApp;
-import eu.dataship.dataship.AppDatabase.InstalledAppDao;
+import eu.dataship.dataship.data.InstalledApp;
+import eu.dataship.dataship.data.InstalledAppDao;
 
 public class InstalledAppRepository {
     private static final String TAG = "dataship";

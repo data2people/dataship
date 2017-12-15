@@ -1,4 +1,4 @@
-package eu.dataship.dataship.AppDatabase;
+package eu.dataship.dataship.data;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;

@@ -1,4 +1,4 @@
-package eu.dataship.dataship.AppDatabase;
+package eu.dataship.dataship.data;
 
 import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Database;
@@ -6,9 +6,6 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.migration.Migration;
 import android.content.Context;
-
-import eu.dataship.dataship.AppDatabase.InstalledApp;
-import eu.dataship.dataship.AppDatabase.InstalledAppDao;
 
 @Database(entities = {InstalledApp.class}, version = 3)
 public abstract class InstalledAppsDatabase extends RoomDatabase {
