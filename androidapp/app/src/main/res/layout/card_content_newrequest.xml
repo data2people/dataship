@@ -66,18 +66,46 @@
         app:layout_constraintTop_toBottomOf="@+id/newrequest_tv_mydatafrom" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_to"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:src="@android:color/transparent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/fab_select_all"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        android:layout_marginRight="8dp" />
+
+    <TextView
+        android:id="@+id/fab_to_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:elevation="16dp"
+        android:text="TO"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/black"
+        app:layout_constraintStart_toStartOf="@id/fab_to"
+        app:layout_constraintEnd_toEndOf="@+id/fab_to"
+        app:layout_constraintTop_toTopOf="@+id/fab_to"
+        android:visibility="gone"/>
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_select_all"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:clickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/fab_send_email"
-        app:layout_constraintEnd_toEndOf="@+id/fab_send_email"
-        app:layout_constraintStart_toStartOf="@+id/fab_send_email"
-        app:srcCompat="@drawable/ic_check_box_black_24dp"
         android:scaleType="center"
-        android:layout_marginLeft="8dp" />
+        app:layout_constraintBottom_toTopOf="@+id/fab_send_email"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:srcCompat="@drawable/ic_check_box_black_24dp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_send_email"

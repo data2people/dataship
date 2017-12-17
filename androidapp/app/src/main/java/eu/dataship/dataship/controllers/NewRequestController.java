@@ -5,9 +5,11 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,8 +17,10 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.afollestad.materialdialogs.MaterialDialog;
 import com.bluelinelabs.conductor.ControllerChangeHandler;
 import com.bluelinelabs.conductor.ControllerChangeType;
 import com.bluelinelabs.conductor.RouterTransaction;
@@ -46,6 +50,10 @@ public class NewRequestController extends ButterKnifeLifecycleController {
     MaterialSpinner action_spinner;
     @BindView(R.id.providers_recycler_view)
     RecyclerView provider_recycler_view;
+    @BindView(R.id.fab_to)
+    FloatingActionButton fab_to;
+    @BindView(R.id.fab_to_textview)
+    TextView fab_to_textview;
     @BindArray(R.array.gdpr_actions)
     String[] possible_actions;
 
@@ -84,10 +92,16 @@ public class NewRequestController extends ButterKnifeLifecycleController {
         provider_recycler_view.setAdapter(adapter);
 
         action_spinner.setItems(possible_actions);
-        action_spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
-
-            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
-
+        action_spinner.setOnItemSelectedListener((view1, position, id, item) -> {
+            if (position == 2) {
+                // show to button
+                fab_to.setVisibility(View.VISIBLE);
+                fab_to_textview.setVisibility(View.VISIBLE);
+            }
+            else {
+                // hide to button if it is present
+                fab_to.setVisibility(View.GONE);
+                fab_to_textview.setVisibility(View.GONE);
             }
         });
 
@@ -109,20 +123,23 @@ public class NewRequestController extends ButterKnifeLifecycleController {
     @OnClick(R.id.fab_send_email)
     public void sendEmails() {
 
+        int action = action_spinner.getSelectedIndex();
         UserInfo userInfo = getViewModel().getUserInfo().getValue();
-        if (userInfo == null || userInfo.getFullName() == null || userInfo.getEmailAddress() == null) {
+
+        if (action == 2 && getViewModel().getOrganizationReceiver() == null) {
+            showDialogOrganizationReceiverHelper();
+        } else if (userInfo == null || userInfo.getFullName() == null || userInfo.getEmailAddress() == null) {
             Log.d(TAG, "sendEmails: User info null.");
-            // user needs to input info
+            // user needs to: input info
             pushToUserInfoController(true);
         } else {
+            // ok we can send email
             String emailAddressOptional = "";
             if (userInfo.getEmailAddressOptional() != null) {
                 emailAddressOptional = ", " + userInfo.getEmailAddressOptional();
             }
 
             Log.d(TAG, "sendEmails: User info: " + userInfo.getEmailAddress() + " " + userInfo.getFullName());
-            // user needs to input info
-            int action = action_spinner.getSelectedIndex();
             List<InstalledApp> selected = adapter.getSelected();
             List<String> selectedEmails = new ArrayList<>();
             for (InstalledApp app : selected) {
@@ -132,7 +149,6 @@ public class NewRequestController extends ButterKnifeLifecycleController {
             String subject = "";
             String body = "";
 
-            //Toast.makeText(getActivity(), "Emails: " + selectedEmails + " action: " + action, Toast.LENGTH_LONG).show();
             switch (action) {
                     case 0:
                         // learn about
@@ -145,12 +161,29 @@ public class NewRequestController extends ButterKnifeLifecycleController {
                         break;
                     case 1:
                         // access
+                        subject = getResources().getString(R.string.subject_access);
+                        body = getResources().getString(
+                                R.string.body_access,
+                                getViewModel().getUserInfo().getValue().getFullName(),
+                                getViewModel().getUserInfo().getValue().getEmailAddress(),
+                                emailAddressOptional);
                         break;
                     case 2:
                         // transfer
+                        subject = getResources().getString(R.string.subject_transfer);
+                        body = getResources().getString(
+                                R.string.body_transfer,
+                                getViewModel().getUserInfo().getValue().getFullName(),
+                                getViewModel().getUserInfo().getValue().getEmailAddress(),
+                                emailAddressOptional,
+                                getViewModel().getOrganizationReceiver());
                         break;
                     case 3:
                         // delete
+                        subject = getResources().getString(R.string.subject_delete);
+                        body = getResources().getString(
+                                R.string.body_delete,
+                                getViewModel().getUserInfo().getValue().getFullName());
                         break;
                     default:
                         break;
@@ -183,6 +216,27 @@ public class NewRequestController extends ButterKnifeLifecycleController {
                 .with(userInfoController)
                 .pushChangeHandler(new HorizontalChangeHandler())
                 .popChangeHandler(new HorizontalChangeHandler()));
+    }
+
+    @OnClick(R.id.fab_to)
+    public void showDialogOrganizationReceiver() {
+        showDialogOrganizationReceiverHelper();
+    }
+
+    private void showDialogOrganizationReceiverHelper() {
+        String prefill = "";
+        if (getViewModel().getOrganizationReceiver() != null) {
+            prefill = getViewModel().getOrganizationReceiver();
+        }
+        new MaterialDialog.Builder(getActivity())
+                .title("Organization receiver")
+                .inputType(InputType.TYPE_CLASS_TEXT)
+                .widgetColorRes(R.color.colorPrimary)
+                .positiveColorRes(R.color.colorPrimary)
+                .input("Organization receiver", prefill, (dialog, input) -> {
+                     getViewModel().setOrganizationReceiver(input.toString());
+                     Toast.makeText(getActivity(), "You can now hit send.", Toast.LENGTH_SHORT).show();
+                }).show();
     }
 
     // --------------------------------------------------------------------------------- option menu

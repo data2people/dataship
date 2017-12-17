@@ -19,6 +19,8 @@ public class NewRequestViewModel extends ViewModel {
     private LiveData<PagedList<InstalledApp>> installedApps;
     private MutableLiveData<UserInfo> userInfo;
 
+    private String organizationReceiver = null;
+
     public NewRequestViewModel(InstalledAppRepository installedAppRepository, UserInfoRepository userInfoRepository) {
         this.installedAppRepository = installedAppRepository;
         this.userInfoRepository = userInfoRepository;
@@ -58,5 +60,13 @@ public class NewRequestViewModel extends ViewModel {
         userInfoRepository.setUserFullName(userInfo.getFullName());
         // update current userInfo object
         this.userInfo.setValue(userInfo);
+    }
+
+    public String getOrganizationReceiver() {
+        return organizationReceiver;
+    }
+
+    public void setOrganizationReceiver(String organizationReceiver) {
+        this.organizationReceiver = organizationReceiver;
     }
 }
