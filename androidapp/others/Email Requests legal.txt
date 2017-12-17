@@ -1,0 +1,155 @@
+I. REQUESTS
+
+- To be integrated in 1.0:
+1. LEARN ABOUT - Does company have data from me, if so for what purpose
+2. ACCESS - receive a copy of personal data
+3. TRANSFER - transfer data from one company to another
+4. DELETE - delete all data from company’s database
+
+
+- To be integrated later:
+CORRECT - correct personal data in company’s database
+COMPLAINT - in case company does not reply/act appropriately
+OBJECT - restriction to processing of personal data or object to processing at all
+
+
+II. MAILS
+
+1. LEARN ABOUT - Info
+
+1.1. LEARN_1st_mail:
+
+Subject: General Data Request
+
+Dear Sir or Madam,
+
+I would like to request your confirmation as to whether your organization is processing personal data concerning me, and, where that is the case, the following information:
+
+(i) the purposes of the processing;
+(ii) the categories of personal data concerned;
+(iii) the recipients or categories of recipient to whom my personal data have been or will be disclosed; if transferred to a third country or an international organization, what the appropriate safeguards for the transfer pursuant to Article 46 GDPR are;
+(iv) where possible, the envisaged period for which my personal data will be stored, or, if not possible, the criteria used to determine that period;
+(v) where personal data is not collected from me, any available data as to their source;
+(vi) the existence of automated decision-making, including profiling, pursuant to Article 22(1) and (4) GDPR, and, meaningful information about the logic involved, as well as the significance and the envisaged consequences of such processing for me.
+
+My full name is (full_username) and my corresponding email(s) is/are (user_email1), (user_email2), etc.
+
+I am hereby executing my right to access that kind of information pursuant to Article 15(1) GDPR. It may be helpful for you to know that such a request should be responded to without undue delay and at the latest within one month (Rec. 59 GDPR).
+
+Thank you for your cooperation.
+
+
+Yours sincerely,
+(full_username)
+
+
+1.2. LEARN_2nd_email:
+
+Subject: REMINDER: General Data Request
+
+Dear Sir or Madam,
+
+I am writing further to my mail from (date_sent) in which I requested to confirm if you are processing any personal data concerning me on the basis of Article 15(1) GDPR, since I have not received any response from you.
+
+As the statutory time limit for a response has now expired, I would appreciate an immediate answer from you. If I do not receive an answer from you within the next 14 days, I will consider to lodge a complaint pursuant to Article 15(1) lit f GDPR.
+
+Yours sincerely,
+(full_username)
+
+
+2. ACCESS - receive a copy of personal data
+
+2.1. ACCESS_1st_email:
+
+Subject: Data Access Request
+
+Dear Sir or Madam,
+
+I am hereby requesting an electronic copy of all personal data concerning me undergoing processing by your organization pursuant to Article 15(1) and (3) GDPR.
+
+My full name is (full_username) and my corresponding email(s) is/are (user_email1), (user_email2), etc.
+
+It may be helpful for you to know that a request for a data copy pursuant to Article 15(1) and (3) GDPR should be responded to without undue delay and at the latest within one month (Rec. 59 GDPR).
+
+Thank you for your cooperation.
+
+Yours sincerely,
+(full_username)
+
+
+2.1. ACCESS_2nd_email:
+
+Subject: REMINDER: Data Access Request
+
+Dear Sir or Madam,
+
+I am writing further to my mail from (date_sent) in which I requested a copy of my personal data undergoing processing by your organization on the basis of Article 15(1) and (3) GDPR, since I have not received any response from you.
+
+As the statutory time limit for a response has now expired, I would appreciate an immediate answer from you. If I do not receive an answer from you within the next 14 days, I will consider to lodge a complaint pursuant to Article 15(1) lit (f) GDPR.
+
+Yours sincerely,
+(full_username)
+
+
+3. TRANSFER - transfer data from one organization to another
+
+3.1. TRANSFER_1st_email:
+
+Subject: Data Transfer Request
+
+Dear Sir or Madam,
+
+I would like to ask you to transfer any data concerning me to (organization_receiver) and am hereby executing of my right of portability pursuant to Article 20 GDPR.
+
+My full name is (full_username) and my corresponding email(s) is/are (user_email1), (user_email2), etc.
+
+It may be helpful for you to know that a request for a data transfer pursuant to Article 20 GDPR should be responded to without undue delay and at the latest within one month (Rec. 59 GDPR).
+
+Thank you for your cooperation.
+
+Yours sincerely,
+(full_username)
+
+
+3.2. TRANSFER_2nd_email:
+
+Subject: REMINDER: Data Transfer Request
+
+Dear Sir or Madam,
+
+I am writing further to my mail from (date_sent) in which I requested a transfer of my personal data by your organization to (organization_receiver) on the basis of Article 20 GDPR, since I have not received any response from you.
+
+As the statutory time limit for a response has now expired, I would appreciate an immediate answer from you. If I do not receive an answer from you within the next 14 days, I will consider to lodge a complaint pursuant to Article 15(1) lit (f) GDPR.
+
+Yours sincerely,
+(full_username)
+
+
+4. DELETE - delete all data from company’s database
+
+4.1. TRANSFER_1st_email:
+
+Subject: Erasure of Personal Data Request
+
+Dear Sir or Madam,
+
+I would like to ask you to erase all personal data concerning me obtained by you without undue delay. Please confirm the erasure once executed. Furthermore, I would like you to confirm that if applicable, you have taken necessary steps pursuant to Article 17(2) GDPR.
+
+It may be helpful for you to know that a request for erasure of personal data pursuant to Article 17 GDPR should be responded to without undue delay and at the latest within one month (Recital 59 GDPR).
+
+Yours sincerely,
+(full_username)
+
+
+4.2. TRANSFER_2nd_email:
+
+Subject: REMINDER: Erasure of Personal Data Request
+
+Dear Sir or Madam,
+
+I am writing further to my mail from (date) in which I requested to delete any personal data concerning me held by your organization on the basis of Article 17 GDPR, since I have not received any response from you.
+
+As the statutory time limit for a response has now expired, I would appreciate an immediate answer from you. If I do not receive an answer from you within the next 14 days, I will consider to lodge a complaint pursuant to Article 15(1) lit (f) GDPR.
+
+Yours sincerely,
+(full_username)

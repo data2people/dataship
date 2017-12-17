@@ -6,10 +6,12 @@ public class UserInfo {
 
     private @Nullable String fullName;
     private @Nullable String emailAddress;
+    private @Nullable String emailAddressOptional;
 
-    public UserInfo(String fullName, String emailAddress) {
+    public UserInfo(String fullName, String emailAddress, String emailAddressOptional) {
         this.fullName = fullName;
         this.emailAddress = emailAddress;
+        this.emailAddressOptional = emailAddressOptional;
     }
 
     @Nullable
@@ -28,5 +30,14 @@ public class UserInfo {
 
     public void setEmailAddress(@Nullable String emailAddress) {
         this.emailAddress = emailAddress;
+    }
+
+    @Nullable
+    public String getEmailAddressOptional() {
+        return emailAddressOptional;
+    }
+
+    public void setEmailAddressOptional(@Nullable String emailAddressOptional) {
+        this.emailAddressOptional = emailAddressOptional;
     }
 }

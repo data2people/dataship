@@ -42,7 +42,8 @@ public class NewRequestViewModel extends ViewModel {
 
             UserInfo newUserInfo = new UserInfo(
                 userInfoRepository.getUserFullName(),
-                userInfoRepository.getUserEmailAddress());
+                userInfoRepository.getUserEmailAddress(),
+                userInfoRepository.getUserEmailAddressOptional());
 
             userInfo.setValue(newUserInfo);
         }
@@ -52,6 +53,7 @@ public class NewRequestViewModel extends ViewModel {
 
     public void setUserInfo(UserInfo userInfo) {
         // update sharedPreferences for future references
+        userInfoRepository.setUserEmailAddressOptional(userInfo.getEmailAddressOptional());
         userInfoRepository.setUserEmailAddress(userInfo.getEmailAddress());
         userInfoRepository.setUserFullName(userInfo.getFullName());
         // update current userInfo object

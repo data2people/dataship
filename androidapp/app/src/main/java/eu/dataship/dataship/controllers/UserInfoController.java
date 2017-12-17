@@ -23,6 +23,8 @@ public class UserInfoController extends ButterKnifeLifecycleController {
     EditText fullnameEditText;
     @BindView(R.id.user_info_email_edit_text)
     EditText emailEditText;
+    @BindView(R.id.user_info_email_optional_edit_text)
+    EditText emailOptionalEditText;
 
     @Override
     protected View inflateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container) {
@@ -40,6 +42,9 @@ public class UserInfoController extends ButterKnifeLifecycleController {
                 }
                 if (userInfo.getEmailAddress() != null) {
                     emailEditText.setText(userInfo.getEmailAddress());
+                }
+                if (userInfo.getEmailAddressOptional() != null) {
+                    emailOptionalEditText.setText(userInfo.getEmailAddressOptional());
                 }
             }
         });
@@ -60,9 +65,11 @@ public class UserInfoController extends ButterKnifeLifecycleController {
     public void saveUserInfo() {
         String fullname = fullnameEditText.getText().toString().matches("") ? null : fullnameEditText.getText().toString();
         String emailAddress = emailEditText.getText().toString().matches("") ? null : emailEditText.getText().toString();
+        String emailAddressOptional = emailOptionalEditText.getText().toString().matches("") ? null : emailOptionalEditText.getText().toString();
         UserInfo userInfo = new UserInfo(
                 fullname,
-                emailAddress
+                emailAddress,
+                emailAddressOptional
         );
         getViewModel().setUserInfo(userInfo);
         // snackbar automatically looks for a suitable parent view

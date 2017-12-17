@@ -1,0 +1,153 @@
+<resources>
+
+    <!-- LEARN ABOUT -->
+    <string
+        name="subject_learn_about">General Data Request</string>
+    <!--formatting
+        1 - Full name
+        2 - Primary email address
+        3 - Optional email address
+    -->
+    <string
+        name="body_learn_about">Dear Sir or Madam,\n
+\n
+I would like to request your confirmation as to whether your organization is processing personal data concerning me, and, where that is the case, the following information:\n
+\n
+(i) the purposes of the processing;\n
+(ii) the categories of personal data concerned;\n
+(iii) the recipients or categories of recipient to whom my personal data have been or will be disclosed; if transferred to a third country or an international organization, what the appropriate safeguards for the transfer pursuant to Article 46 GDPR are;\n
+(iv) where possible, the envisaged period for which my personal data will be stored, or, if not possible, the criteria used to determine that period;\n
+(v) where personal data is not collected from me, any available data as to their source;\n
+(vi) the existence of automated decision-making, including profiling, pursuant to Article 22(1) and (4) GDPR, and, meaningful information about the logic involved, as well as the significance and the envisaged consequences of such processing for me.\n
+\n
+My full name is %1$s and my corresponding email(s) is/are %2$s%3$s\n
+\n
+I am hereby executing my right to access that kind of information pursuant to Article 15(1) GDPR. It may be helpful for you to know that such a request should be responded to without undue delay and at the latest within one month (Rec. 59 GDPR).\n
+\n
+Thank you for your cooperation.\n
+\n
+\n
+Yours sincerely,\n
+%1$s
+    </string>
+    <string name="subject_learn_about_reminder">REMINDER: General Data Request</string>
+    <!--formatting
+        1 - Full name
+        2 - Date sent
+    -->
+    <string name="body_learn_about_reminder">Dear Sir or Madam,\n
+\n
+I am writing further to my mail from %2$s in which I requested to confirm if you are processing any personal data concerning me on the basis of Article 15(1) GDPR, since I have not received any response from you.\n
+\n
+As the statutory time limit for a response has now expired, I would appreciate an immediate answer from you. If I do not receive an answer from you within the next 14 days, I will consider to lodge a complaint pursuant to Article 15(1) lit f GDPR.\n
+\n
+\n
+Yours sincerely,\n
+%1$s</string>
+
+
+    <!-- ACCESS -->
+    <string name="subject_access">Data Access Request</string>
+    <!--formatting
+        1 - Full name
+        2 - Primary email address
+        3 - Optional email address
+    -->
+    <string name="body_access">Dear Sir or Madam,\n
+\n
+I am hereby requesting an electronic copy of all personal data concerning me undergoing processing by your organization pursuant to Article 15(1) and (3) GDPR.\n
+\n
+My full name is %1$s and my corresponding email(s) is/are %2$s, %3$s, etc.\n
+\n
+It may be helpful for you to know that a request for a data copy pursuant to Article 15(1) and (3) GDPR should be responded to without undue delay and at the latest within one month (Rec. 59 GDPR).\n
+\n
+Thank you for your cooperation.\n
+\n
+\n
+Yours sincerely,\n
+%1$s</string>
+    <string name="subject_access_reminder">REMINDER: Data Access Request</string>
+    <!--formatting
+        1 - Full name
+        2 - Date sent
+    -->
+    <string name="body_access_reminder">Dear Sir or Madam,\n
+\n
+I am writing further to my mail from %2$s in which I requested a copy of my personal data undergoing processing by your organization on the basis of Article 15(1) and (3) GDPR, since I have not received any response from you.\n
+\n
+As the statutory time limit for a response has now expired, I would appreciate an immediate answer from you. If I do not receive an answer from you within the next 14 days, I will consider to lodge a complaint pursuant to Article 15(1) lit (f) GDPR.\n
+\n
+\n
+Yours sincerely,\n
+%1$s</string>
+
+
+    <!-- TRANSFER -->
+    <string name="subject_transfer">Data Transfer Request</string>
+    <!--formatting
+        1 - Full name
+        2 - Primary email address
+        3 - Optional email address
+        4 - Organization receiver
+    -->
+    <string name="body_transfer">Dear Sir or Madam,\n
+\n
+I would like to ask you to transfer any data concerning me to %4$s and am hereby executing of my right of portability pursuant to Article 20 GDPR.\n
+\n
+My full name is %1$s and my corresponding email(s) is/are %2$s, %3$s, etc.\n
+\n
+It may be helpful for you to know that a request for a data transfer pursuant to Article 20 GDPR should be responded to without undue delay and at the latest within one month (Rec. 59 GDPR).\n
+\n
+Thank you for your cooperation.\n
+\n
+\n
+Yours sincerely,\n
+%1$s</string>
+    <string name="subject_transfer_reminder">REMINDER: Data Transfer Request</string>
+    <!--formatting
+        1 - Full name
+        2 - Date sent
+        3 - Organization receiver
+    -->
+    <string name="body_transfer_reminder">Dear Sir or Madam,\n
+\n
+I am writing further to my mail from %2$s in which I requested a transfer of my personal data by your organization to %3$s on the basis of Article 20 GDPR, since I have not received any response from you.\n
+\n
+As the statutory time limit for a response has now expired, I would appreciate an immediate answer from you. If I do not receive an answer from you within the next 14 days, I will consider to lodge a complaint pursuant to Article 15(1) lit (f) GDPR.\n
+\n
+\n
+Yours sincerely,\n
+%1$s</string>
+
+
+    <!-- DELETE -->
+    <string name="subject_delete">Erasure of Personal Data Request</string>
+    <!--formatting
+        1 - Full name
+    -->
+    <string name="body_delete">Dear Sir or Madam,\n
+\n
+I would like to ask you to erase all personal data concerning me obtained by you without undue delay. Please confirm the erasure once executed. Furthermore, I would like you to confirm that if applicable, you have taken necessary steps pursuant to Article 17(2) GDPR.\n
+\n
+It may be helpful for you to know that a request for erasure of personal data pursuant to Article 17 GDPR should be responded to without undue delay and at the latest within one month (Recital 59 GDPR).\n
+\n
+\n
+Yours sincerely,\n
+%1$s</string>
+
+    <string name="subject_delete_reminder">REMINDER: Erasure of Personal Data Request</string>
+    <!--formatting
+        1 - Full name
+        2 - Date sent
+    -->
+    <string name="body_delete_reminder">Dear Sir or Madam,\n
+\n
+I am writing further to my mail from %2$s in which I requested to delete any personal data concerning me held by your organization on the basis of Article 17 GDPR, since I have not received any response from you.\n
+\n
+As the statutory time limit for a response has now expired, I would appreciate an immediate answer from you. If I do not receive an answer from you within the next 14 days, I will consider to lodge a complaint pursuant to Article 15(1) lit (f) GDPR.\n
+\n
+\n
+Yours sincerely,\n
+%1$s</string>
+
+</resources>

@@ -6,38 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="8dp"
-        android:contentDescription="email icon"
-        app:layout_constraintBottom_toBottomOf="@+id/user_info_email_edit_text"
-        app:layout_constraintEnd_toStartOf="@+id/user_info_email_edit_text"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/user_info_email_edit_text"
-        app:srcCompat="@drawable/ic_email_white_24dp" />
-
-    <EditText
-        android:id="@+id/user_info_email_edit_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Email Address"
-        android:inputType="textEmailAddress"
-        android:singleLine="true"
-        android:theme="@style/MyEditTextTheme"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -45,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="8dp"
         android:contentDescription="identity icon"
         app:layout_constraintBottom_toBottomOf="@+id/user_info_fullname_edit_text"
@@ -53,8 +22,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/user_info_fullname_edit_text"
-        app:srcCompat="@drawable/ic_perm_identity_white_24dp"
-        android:layout_marginRight="16dp" />
+        app:srcCompat="@drawable/ic_perm_identity_white_24dp" />
 
     <EditText
         android:id="@+id/user_info_fullname_edit_text"
@@ -65,25 +33,90 @@
         android:hint="Full Name"
         android:inputType="textPersonName"
         android:singleLine="true"
-        android:theme="@style/MyEditTextTheme"
         android:textColor="@android:color/white"
+        android:theme="@style/MyEditTextTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="email icon"
+        app:layout_constraintBottom_toBottomOf="@+id/user_info_email_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/user_info_email_edit_text"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_info_email_edit_text"
+        app:srcCompat="@drawable/ic_email_white_24dp"
+        android:layout_marginRight="16dp" />
+
+    <EditText
+        android:id="@+id/user_info_email_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Email Address"
+        android:inputType="textEmailAddress"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:theme="@style/MyEditTextTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/user_info_fullname_edit_text" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:contentDescription="email icon"
+        app:layout_constraintBottom_toBottomOf="@+id/user_info_email_optional_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/user_info_email_optional_edit_text"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/user_info_email_optional_edit_text"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/ic_email_white_24dp"
+        android:layout_marginRight="16dp" />
+
+    <EditText
+        android:id="@+id/user_info_email_optional_edit_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="Email Address (optional)"
+        android:inputType="textEmailAddress"
+        android:singleLine="true"
+        android:textColor="@android:color/white"
+        android:theme="@style/MyEditTextTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/user_info_email_edit_text" />
 
     <Button
         android:id="@+id/user_info_button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:background="@color/colorAccent"
         android:text="SAVE"
-        app:layout_constraintEnd_toEndOf="@+id/user_info_fullname_edit_text"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintEnd_toEndOf="@+id/user_info_email_optional_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/user_info_email_optional_edit_text" />
 
     <TextView
         android:id="@+id/textView"
@@ -94,4 +127,5 @@
         app:layout_constraintEnd_toEndOf="@+id/user_info_button"
         app:layout_constraintStart_toStartOf="@+id/user_info_button"
         app:layout_constraintTop_toBottomOf="@+id/user_info_button" />
+
 </android.support.constraint.ConstraintLayout>

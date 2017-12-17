@@ -9,6 +9,7 @@ public class UserInfoRepository {
     private static final String TAG = "dataship";
     private String SHARED_PREF_USER_FULL_NAME = "user_full_name";
     private String SHARED_PREF_USER_EMAIL_ADDRESS = "user_email_address";
+    private String SHARED_PREF_USER_EMAIL_ADDRESS_OPTIONAL = "user_email_address_optional";
     private SharedPreferences sharedPreferences;
 
     public UserInfoRepository(SharedPreferences sharedPreferences) {
@@ -36,6 +37,18 @@ public class UserInfoRepository {
         Log.d(TAG, "setUserEmailAddress: User info " + emailAddress);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(SHARED_PREF_USER_EMAIL_ADDRESS, emailAddress);
+        editor.apply();
+    }
+
+    public @Nullable String getUserEmailAddressOptional() {
+        // default value is null
+        return sharedPreferences.getString(SHARED_PREF_USER_EMAIL_ADDRESS_OPTIONAL, null);
+    }
+
+    public void setUserEmailAddressOptional(String emailAddressOptional) {
+        Log.d(TAG, "setUserEmailAddress: User info " + emailAddressOptional);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SHARED_PREF_USER_EMAIL_ADDRESS_OPTIONAL, emailAddressOptional);
         editor.apply();
     }
 }

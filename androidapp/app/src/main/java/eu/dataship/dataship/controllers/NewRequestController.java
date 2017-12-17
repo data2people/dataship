@@ -1,6 +1,7 @@
 package eu.dataship.dataship.controllers;
 
 import android.arch.lifecycle.LifecycleObserver;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
@@ -28,6 +29,7 @@ import java.util.List;
 import butterknife.BindArray;
 import butterknife.BindView;
 import butterknife.OnClick;
+import de.cketti.mailto.EmailIntentBuilder;
 import eu.dataship.dataship.R;
 import eu.dataship.dataship.data.InstalledApp;
 import eu.dataship.dataship.Base.ButterKnifeLifecycleController;
@@ -82,6 +84,12 @@ public class NewRequestController extends ButterKnifeLifecycleController {
         provider_recycler_view.setAdapter(adapter);
 
         action_spinner.setItems(possible_actions);
+        action_spinner.setOnItemSelectedListener(new MaterialSpinner.OnItemSelectedListener<String>() {
+
+            @Override public void onItemSelected(MaterialSpinner view, int position, long id, String item) {
+
+            }
+        });
 
     }
 
@@ -107,6 +115,10 @@ public class NewRequestController extends ButterKnifeLifecycleController {
             // user needs to input info
             pushToUserInfoController(true);
         } else {
+            String emailAddressOptional = "";
+            if (userInfo.getEmailAddressOptional() != null) {
+                emailAddressOptional = ", " + userInfo.getEmailAddressOptional();
+            }
 
             Log.d(TAG, "sendEmails: User info: " + userInfo.getEmailAddress() + " " + userInfo.getFullName());
             // user needs to input info
@@ -116,8 +128,45 @@ public class NewRequestController extends ButterKnifeLifecycleController {
             for (InstalledApp app : selected) {
                 selectedEmails.add(app.getEmail());
             }
-            Toast.makeText(getActivity(), "Emails: " + selectedEmails + " action: " + action, Toast.LENGTH_LONG).show();
 
+            String subject = "";
+            String body = "";
+
+            //Toast.makeText(getActivity(), "Emails: " + selectedEmails + " action: " + action, Toast.LENGTH_LONG).show();
+            switch (action) {
+                    case 0:
+                        // learn about
+                        subject = getResources().getString(R.string.subject_learn_about);
+                        body = getResources().getString(
+                                R.string.body_learn_about,
+                                getViewModel().getUserInfo().getValue().getFullName(),
+                                getViewModel().getUserInfo().getValue().getEmailAddress(),
+                                emailAddressOptional);
+                        break;
+                    case 1:
+                        // access
+                        break;
+                    case 2:
+                        // transfer
+                        break;
+                    case 3:
+                        // delete
+                        break;
+                    default:
+                        break;
+                }
+            // TODO change email address
+            ArrayList<String> firstAddress = new ArrayList<>();
+            firstAddress.add("giacomoran@gmail.com");
+            firstAddress.add("giacomoran@protonmail.com");
+
+            Log.d(TAG, "sendEmails: subject: " + subject);
+            Log.d(TAG, "sendEmails: body: " + body);
+            EmailIntentBuilder.from(getActivity())
+                    .to(firstAddress)
+                    .subject(subject)
+                    .body(body)
+                    .start();
         }
     }
 
