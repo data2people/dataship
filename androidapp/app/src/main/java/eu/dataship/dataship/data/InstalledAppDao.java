@@ -27,4 +27,7 @@ public interface InstalledAppDao {
     @Delete
     void delete(InstalledApp installedApp);
 
+    @Query("DELETE FROM installedapp")
+    void nukeTable();
+
 }

@@ -66,6 +66,8 @@ public class InstalledAppRepository {
                 }
             }
 
+            // clear table before inserting new apps, to clear uninstalled apps
+            installedAppDao.nukeTable();
             installedAppDao.insertAll(updatedList);
         });
     }
