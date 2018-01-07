@@ -6,10 +6,12 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
 import android.support.v7.recyclerview.extensions.DiffCallback;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -29,9 +31,10 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
     private PackageManager packageManager;
     private NewRequestViewModel viewModel;
 
-    private List<InstalledApp> selected = new ArrayList<>();
+    private static List<InstalledApp> selected = new ArrayList<>();
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        private static final String TAG = "ViewHolder";
         @BindView(R.id.installedappslist_layout)
         LinearLayout row;
         @BindView(R.id.installedappslist_row_tv)
@@ -68,6 +71,20 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
             } else {
                 checkBox.setChecked(false);
             }
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
+
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView,
+                                             boolean isChecked) {
+                    if (isChecked) {
+                        selected.add(app);
+                        Log.d(TAG, "Selected size: " + Integer.toString(selected.size()));
+                    } else {
+                        selected.remove(app);
+                        Log.d(TAG, "Selected size: " + Integer.toString(selected.size()));
+                    }
+                }
+            });
         }
         public void clear() {
             this.appName.setText("Loading...");
@@ -76,18 +93,14 @@ public class InstalledAppsAdapter extends PagedListAdapter<InstalledApp, Install
         }
 
         @OnClick(R.id.installedappslist_layout)
-        public void rowClicked(LinearLayout clickedRow) {
+        public void rowClicked(LinearLayout rowClicked) {
             boolean oldCheckboxValue = checkBox.isChecked();
             checkBox.setChecked(!oldCheckboxValue);
-            if (oldCheckboxValue == false) {
-                selected.add(app);
-            } else {
-                selected.remove(app);
-            }
         }
 
         @OnClick(R.id.installedappslist_row_checkbox)
-        public void overrideCheckboxClick() {}
+        public void overrideCheckboxClick() {
+        }
     }
 
     public InstalledAppsAdapter(NewRequestViewModel viewModel, PackageManager packageManager) {

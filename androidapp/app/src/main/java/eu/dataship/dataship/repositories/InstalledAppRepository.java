@@ -66,7 +66,7 @@ public class InstalledAppRepository {
                 }
             }
 
-            // clear table before inserting new apps, to clear uninstalled apps
+            // clear table before inserting new apps, so that uninstalled apps are removed
             installedAppDao.nukeTable();
             installedAppDao.insertAll(updatedList);
         });
@@ -74,6 +74,10 @@ public class InstalledAppRepository {
 
     private boolean isSystemPackage(PackageInfo packageInfo) {
         return ((packageInfo.applicationInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0);
+    }
+
+    public void updateApp(InstalledApp app) {
+        installedAppDao.updateApp(app);
     }
 
 }

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LifecycleObserver;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.DividerItemDecoration;
@@ -17,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,8 @@ import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ThreadPoolExecutor;
 
 import butterknife.BindArray;
 import butterknife.BindView;
@@ -45,6 +49,9 @@ public class NewRequestController extends ButterKnifeLifecycleController {
     private static final String TAG = "dataship";
 
     private InstalledAppsAdapter adapter;
+
+    private boolean loadingEmailAddresses = false;
+    private ArrayList<String> sendToAddresses = new ArrayList<>();
 
     @BindView(R.id.newrequest_action_spinner)
     MaterialSpinner action_spinner;
@@ -121,7 +128,7 @@ public class NewRequestController extends ButterKnifeLifecycleController {
     }
 
     @OnClick(R.id.fab_send_email)
-    public void sendEmails() {
+    public void prepareEmail() {
 
         int action = action_spinner.getSelectedIndex();
         UserInfo userInfo = getViewModel().getUserInfo().getValue();
@@ -133,74 +140,123 @@ public class NewRequestController extends ButterKnifeLifecycleController {
             // user needs to: input info
             pushToUserInfoController(true);
         } else {
-            // ok we can send email
-            String emailAddressOptional = "";
-            if (userInfo.getEmailAddressOptional() != null) {
-                emailAddressOptional = ", " + userInfo.getEmailAddressOptional();
-            }
-
+            // we can retrieve addresses and send email
             Log.d(TAG, "sendEmails: User info: " + userInfo.getEmailAddress() + " " + userInfo.getFullName());
             List<InstalledApp> selected = adapter.getSelected();
             List<String> selectedEmails = new ArrayList<>();
+            ArrayList<InstalledApp> emailsToDownload = new ArrayList<>();
+            Log.d(TAG, "sendEmails: " + Integer.toString(selected.size()));
             for (InstalledApp app : selected) {
-                selectedEmails.add(app.getEmail());
-            }
-
-            String subject = "";
-            String body = "";
-
-            switch (action) {
-                    case 0:
-                        // learn about
-                        subject = getResources().getString(R.string.subject_learn_about);
-                        body = getResources().getString(
-                                R.string.body_learn_about,
-                                getViewModel().getUserInfo().getValue().getFullName(),
-                                getViewModel().getUserInfo().getValue().getEmailAddress(),
-                                emailAddressOptional);
-                        break;
-                    case 1:
-                        // access
-                        subject = getResources().getString(R.string.subject_access);
-                        body = getResources().getString(
-                                R.string.body_access,
-                                getViewModel().getUserInfo().getValue().getFullName(),
-                                getViewModel().getUserInfo().getValue().getEmailAddress(),
-                                emailAddressOptional);
-                        break;
-                    case 2:
-                        // transfer
-                        subject = getResources().getString(R.string.subject_transfer);
-                        body = getResources().getString(
-                                R.string.body_transfer,
-                                getViewModel().getUserInfo().getValue().getFullName(),
-                                getViewModel().getUserInfo().getValue().getEmailAddress(),
-                                emailAddressOptional,
-                                getViewModel().getOrganizationReceiver());
-                        break;
-                    case 3:
-                        // delete
-                        subject = getResources().getString(R.string.subject_delete);
-                        body = getResources().getString(
-                                R.string.body_delete,
-                                getViewModel().getUserInfo().getValue().getFullName());
-                        break;
-                    default:
-                        break;
+                String email = app.getEmail();
+                Log.d(TAG, "sendEmails1: email address: " + email);
+                if (!app.getEmail().trim().equals("NaN")) {
+                    selectedEmails.add(app.getEmail());
+                    Log.d(TAG, "sendEmails2: email address: " + email);
+                } else {
+                    emailsToDownload.add(app);
+                    //email = getViewModel().updateAndGetEmail(app);
+                    //Log.d(TAG, "sendEmails3: email address: " + email);
+                    //selectedEmails.add(email);
                 }
-            // TODO change email address
-            ArrayList<String> firstAddress = new ArrayList<>();
-            firstAddress.add("giacomoran@gmail.com");
-            firstAddress.add("giacomoran@protonmail.com");
+            }
+            sendToAddresses.addAll(selectedEmails);
+            if (sendToAddresses.size() == selected.size()) {
+                sendEmails(sendToAddresses);
+            } else {
+                DownloadEmailsTask downloadEmailsTask = new DownloadEmailsTask();
+                downloadEmailsTask.execute(emailsToDownload);
+                loadingEmailAddresses = true;
+            }
+        }
+    }
+
+    private class DownloadEmailsTask extends AsyncTask<ArrayList<InstalledApp>, Void, ArrayList<String>> {
+
+        @Override
+        protected ArrayList<String> doInBackground(ArrayList<InstalledApp>... installedApps) {
+            ArrayList<String> emails = new ArrayList<>();
+            for (InstalledApp app : installedApps[0]) {
+                emails.add(getViewModel().updateAndGetEmail(app));
+            }
+            return emails;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList<String> emails) {
+            super.onPostExecute(emails);
+            loadingEmailAddresses = false;
+            for (String email : emails) {
+                if (email != null) {
+                    sendToAddresses.add(email);
+                } else {
+                    Toast.makeText(getActivity(), "Some email addresses were lost.", Toast.LENGTH_SHORT);
+                }
+            }
+            sendEmails(sendToAddresses);
+        }
+    }
+
+    private void sendEmails(List<String> addresses) {
+        String subject = "";
+        String body = "";
+        String emailAddressOptional = "";
+
+        int action = action_spinner.getSelectedIndex();
+        UserInfo userInfo = getViewModel().getUserInfo().getValue();
+
+        if (userInfo.getEmailAddressOptional() != null) {
+            emailAddressOptional = ", " + userInfo.getEmailAddressOptional();
+        }
+        switch (action) {
+                case 0:
+                    // learn about
+                    subject = getResources().getString(R.string.subject_learn_about);
+                    body = getResources().getString(
+                            R.string.body_learn_about,
+                            getViewModel().getUserInfo().getValue().getFullName(),
+                            getViewModel().getUserInfo().getValue().getEmailAddress(),
+                            emailAddressOptional);
+                    break;
+                case 1:
+                    // access
+                    subject = getResources().getString(R.string.subject_access);
+                    body = getResources().getString(
+                            R.string.body_access,
+                            getViewModel().getUserInfo().getValue().getFullName(),
+                            getViewModel().getUserInfo().getValue().getEmailAddress(),
+                            emailAddressOptional);
+                    break;
+                case 2:
+                    // transfer
+                    subject = getResources().getString(R.string.subject_transfer);
+                    body = getResources().getString(
+                            R.string.body_transfer,
+                            getViewModel().getUserInfo().getValue().getFullName(),
+                            getViewModel().getUserInfo().getValue().getEmailAddress(),
+                            emailAddressOptional,
+                            getViewModel().getOrganizationReceiver());
+                    break;
+                case 3:
+                    // delete
+                    subject = getResources().getString(R.string.subject_delete);
+                    body = getResources().getString(
+                            R.string.body_delete,
+                            getViewModel().getUserInfo().getValue().getFullName());
+                    break;
+                default:
+                    break;
+            }
 
             Log.d(TAG, "sendEmails: subject: " + subject);
             Log.d(TAG, "sendEmails: body: " + body);
             EmailIntentBuilder.from(getActivity())
-                    .to(firstAddress)
+                    .to(addresses)
                     .subject(subject)
                     .body(body)
                     .start();
-        }
+
+            // clear addresses for next request
+            sendToAddresses.clear();
     }
 
     @OnClick(R.id.fab_select_all)

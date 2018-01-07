@@ -5,14 +5,17 @@ import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 import android.arch.paging.LivePagedListBuilder;
 import android.arch.paging.PagedList;
+import android.util.Log;
 
 import eu.dataship.dataship.data.InstalledApp;
 import eu.dataship.dataship.data.UserInfo;
 import eu.dataship.dataship.repositories.InstalledAppRepository;
 import eu.dataship.dataship.repositories.UserInfoRepository;
+import eu.dataship.dataship.utils.DeveloperEmailDownloader;
 
 public class NewRequestViewModel extends ViewModel {
 
+    private static final String TAG = "NewRequestViewModel";
     private InstalledAppRepository installedAppRepository = null;
     private UserInfoRepository userInfoRepository = null;
 
@@ -20,6 +23,8 @@ public class NewRequestViewModel extends ViewModel {
     private MutableLiveData<UserInfo> userInfo;
 
     private String organizationReceiver = null;
+
+    private DeveloperEmailDownloader developerEmailDownloader = new DeveloperEmailDownloader();
 
     public NewRequestViewModel(InstalledAppRepository installedAppRepository, UserInfoRepository userInfoRepository) {
         this.installedAppRepository = installedAppRepository;
@@ -68,5 +73,13 @@ public class NewRequestViewModel extends ViewModel {
 
     public void setOrganizationReceiver(String organizationReceiver) {
         this.organizationReceiver = organizationReceiver;
+    }
+
+    public String updateAndGetEmail(InstalledApp app) {
+        String email = developerEmailDownloader.getEmail(app.getPackage_name());
+        Log.d(TAG, "updateAndGetEmail: " + email);
+        app.setEmail(email);
+        installedAppRepository.updateApp(app);
+        return email;
     }
 }
