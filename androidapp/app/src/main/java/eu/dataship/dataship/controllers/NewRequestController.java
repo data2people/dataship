@@ -1,8 +1,11 @@
 package eu.dataship.dataship.controllers;
 
+import android.app.Activity;
 import android.arch.lifecycle.LifecycleObserver;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -19,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +34,7 @@ import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -63,6 +68,10 @@ public class NewRequestController extends ButterKnifeLifecycleController {
     TextView fab_to_textview;
     @BindArray(R.array.gdpr_actions)
     String[] possible_actions;
+    @BindView(R.id.email_download_progress)
+    ProgressBar progressBar;
+    @BindView(R.id.fab_send_email)
+    FloatingActionButton fabSendEmail;
 
     public NewRequestController() {
 
@@ -165,7 +174,7 @@ public class NewRequestController extends ButterKnifeLifecycleController {
             } else {
                 DownloadEmailsTask downloadEmailsTask = new DownloadEmailsTask();
                 downloadEmailsTask.execute(emailsToDownload);
-                loadingEmailAddresses = true;
+                setLoadingEmailAddresses(true);
             }
         }
     }
@@ -184,12 +193,12 @@ public class NewRequestController extends ButterKnifeLifecycleController {
         @Override
         protected void onPostExecute(ArrayList<String> emails) {
             super.onPostExecute(emails);
-            loadingEmailAddresses = false;
             for (String email : emails) {
+                Log.d(TAG, "sendEmails: address " + email);
                 if (email != null) {
                     sendToAddresses.add(email);
                 } else {
-                    Toast.makeText(getActivity(), "Some email addresses were lost.", Toast.LENGTH_SHORT);
+                    Toast.makeText(getActivity(), "Some email addresses were lost.", Toast.LENGTH_SHORT).show();
                 }
             }
             sendEmails(sendToAddresses);
@@ -249,15 +258,55 @@ public class NewRequestController extends ButterKnifeLifecycleController {
 
             Log.d(TAG, "sendEmails: subject: " + subject);
             Log.d(TAG, "sendEmails: body: " + body);
-            EmailIntentBuilder.from(getActivity())
-                    .to(addresses)
-                    .subject(subject)
-                    .body(body)
-                    .start();
+
+            List<String> purgedAddresses = purgeAddresses(addresses);
+
+            if (purgedAddresses.size() > 0) {
+                EmailIntentBuilder.from(getActivity())
+                        .to(purgeAddresses(addresses))
+                        .subject(subject)
+                        .body(body)
+                        .start();
+            } else {
+                Toast.makeText(getActivity(), "The apps you selected were not valid.", Toast.LENGTH_SHORT).show();
+            }
+
 
             // clear addresses for next request
             sendToAddresses.clear();
     }
+
+    @Override
+    protected void onActivityPaused(@NonNull Activity activity) {
+        super.onActivityPaused(activity);
+        if (loadingEmailAddresses) {
+            setLoadingEmailAddresses(false);
+        }
+    }
+
+    private void setLoadingEmailAddresses(boolean loadingEmailAddresses) {
+        if (loadingEmailAddresses) {
+            progressBar.setVisibility(View.VISIBLE);
+            fabSendEmail.setEnabled(false);
+            fabSendEmail.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccentDark)));
+        } else {
+            progressBar.setVisibility(View.GONE);
+            fabSendEmail.setEnabled(true);
+            fabSendEmail.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorAccent)));
+        }
+        this.loadingEmailAddresses = loadingEmailAddresses;
+    }
+
+    private List<String> purgeAddresses(List<String> addresses) {
+        for (Iterator<String> iterator = addresses.iterator(); iterator.hasNext(); ) {
+            String value = iterator.next();
+            if (value == null || value.trim().equals("NaN")) {
+                iterator.remove();
+            }
+        }
+        return addresses;
+    }
+
 
     @OnClick(R.id.fab_select_all)
     public void toggleSelectAll() {

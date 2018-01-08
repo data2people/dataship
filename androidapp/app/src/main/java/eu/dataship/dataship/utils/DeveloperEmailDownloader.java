@@ -24,18 +24,15 @@ public class DeveloperEmailDownloader {
         Document document;
         try {
             document = Jsoup.connect(getURLfromPackageName(packageName)).get();
-            email = document.select(cssSelector).toString();
             for (Element el : document.select(cssSelector)) {
                 if (el.text().contains("Email")) {
                     String[] splitted = el.text().trim().split("\\s+");
-                    email = splitted.toString();
                     if (splitted.length > 0) {
                         email = splitted[1];
                     }
                 }
             }
         } catch (IOException e) {
-            email = "exception";
             e.printStackTrace();
         }
 

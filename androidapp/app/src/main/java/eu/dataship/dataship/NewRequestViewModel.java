@@ -78,8 +78,12 @@ public class NewRequestViewModel extends ViewModel {
     public String updateAndGetEmail(InstalledApp app) {
         String email = developerEmailDownloader.getEmail(app.getPackage_name());
         Log.d(TAG, "updateAndGetEmail: " + email);
-        app.setEmail(email);
-        installedAppRepository.updateApp(app);
+        if (email == null) {
+            email = "NaN";
+        } else {
+            app.setEmail(email);
+            installedAppRepository.updateApp(app);
+        }
         return email;
     }
 }
